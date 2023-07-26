@@ -50,8 +50,8 @@ gulf_data <- merge(gdp_data, labor_force, by = c("country", "year"))
 gulf_data <- merge(gulf_data, capital_of_gdp, by = c("country", "year"))
 gulf_data<- merge(gulf_data, gdp_capita, by = c("country", "year"))
 
-#visual representation
 
+#Calculate the labor force growth rate
 gulf_data <- gulf_data%>%
   group_by( country )%>%
   mutate(LFGR = 100* (labor_force - lag(labor_force ) )/
@@ -59,7 +59,7 @@ gulf_data <- gulf_data%>%
   view()
 
 
-# Create plots and charts
+#Visual Representation
 ggplot(gulf_data, aes(x = log(capital_of_gdp), y = log(gdp_per_capita), color=country )  ) +
   geom_point() +
   labs(x = "log Capital Formation", y = "log GDP Per Capita") +

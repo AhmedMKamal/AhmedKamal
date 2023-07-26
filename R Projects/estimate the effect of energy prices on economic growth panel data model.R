@@ -82,6 +82,8 @@ GMM<- pgmm(log(GDP) ~ lag(log(GDP),2) + log(COP) + log(NGP) + log(FEC) +
              lag(log(S), 2:99) + lag(log(TR), 2:99) + lag(log(LF+0.1+0.05), 2:99),
            data = pdata, effect = "individual", model = "onestep", transformation = "d", collapse = T)
 
+#Hausman Test
+phtest(Fixed,Random)
 
 #Organize the outputs into a table
 stargazer(list(Pooled,Fixed,Random,GMM), type="text",

@@ -118,9 +118,9 @@ stargazer(Pooled, Fixed, Random, GMM, type = "text",
 
 
 #descriptive statistics
-describe(cbind(Lnn=log(gulf_data_subset$LFGR +10 ),
+describe(cbind(LnLFGR=log(gulf_data_subset$LFGR +10 ),
                LnGDP=log(gulf_data_subset$gdp_constant_usd),
-               Lns=log(gulf_data_subset$capital_of_gdp)    ) )
+               LnCapital_of_gdp=log(gulf_data_subset$capital_of_gdp)    ) )
 
 
 

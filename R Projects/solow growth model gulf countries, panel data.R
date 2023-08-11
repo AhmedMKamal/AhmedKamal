@@ -3,11 +3,11 @@
 install.packages('WDI'); install.packages('plm')
 install.packages("stargazer");install.packages('tidyverse');install.packages('psych')
 
+library(WDI);library(stargazer)
+library(tidyverse);library(psych)
 
 # Set the indicator codes for GDP per capita, population growth, and gross capital formation
 
-library(WDI);library(stargazer)
-library(tidyverse);library(psych)
 
 
 gdp_capita <- "NY.GDP.PCAP.KD"

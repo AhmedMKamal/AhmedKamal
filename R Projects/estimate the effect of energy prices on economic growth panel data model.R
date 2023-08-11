@@ -53,10 +53,6 @@ ggplot(data, mapping = aes(x=log(LF+0.05+0.1) , y=log(GDP) ) )+
   geom_smooth(method = "lm", se = FALSE)+
   theme_minimal()
 
-ggplot(data, mapping = aes(x=years, y=GDP ) )+
-  geom_line() + facet_wrap(country~.)+ 
-  theme(axis.text.y = element_blank())
-
 ggplot(data, mapping = aes(x=years, y=GDP)) + 
   geom_line() + facet_wrap(country~.)+ 
   theme_minimal()+ scale_x_continuous(labels = NULL)

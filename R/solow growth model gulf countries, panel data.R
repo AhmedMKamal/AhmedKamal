@@ -3,11 +3,11 @@
 install.packages('WDI'); install.packages('plm')
 install.packages("stargazer");install.packages('tidyverse');install.packages('psych')
 
+library(WDI);library(stargazer)
+library(tidyverse);library(psych)
 
 # Set the indicator codes for GDP per capita, population growth, and gross capital formation
 
-library(WDI);library(stargazer)
-library(tidyverse);library(psych)
 
 
 gdp_capita <- "NY.GDP.PCAP.KD"
@@ -50,8 +50,8 @@ gulf_data <- merge(gdp_data, labor_force, by = c("country", "year"))
 gulf_data <- merge(gulf_data, capital_of_gdp, by = c("country", "year"))
 gulf_data<- merge(gulf_data, gdp_capita, by = c("country", "year"))
 
-#visual representation
 
+#Calculate the labor force growth rate
 gulf_data <- gulf_data%>%
   group_by( country )%>%
   mutate(LFGR = 100* (labor_force - lag(labor_force ) )/
@@ -59,7 +59,7 @@ gulf_data <- gulf_data%>%
   view()
 
 
-# Create plots and charts
+#Visual Representation
 ggplot(gulf_data, aes(x = log(capital_of_gdp), y = log(gdp_per_capita), color=country )  ) +
   geom_point() +
   labs(x = "log Capital Formation", y = "log GDP Per Capita") +
@@ -118,9 +118,9 @@ stargazer(Pooled, Fixed, Random, GMM, type = "text",
 
 
 #descriptive statistics
-describe(cbind(Lnn=log(gulf_data_subset$LFGR +10 ),
+describe(cbind(LnLFGR=log(gulf_data_subset$LFGR +10 ),
                LnGDP=log(gulf_data_subset$gdp_constant_usd),
-               Lns=log(gulf_data_subset$capital_of_gdp)    ) )
+               LnCapital_of_gdp=log(gulf_data_subset$capital_of_gdp)    ) )
 
 
 

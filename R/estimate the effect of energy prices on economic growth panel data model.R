@@ -53,10 +53,6 @@ ggplot(data, mapping = aes(x=log(LF+0.05+0.1) , y=log(GDP) ) )+
   geom_smooth(method = "lm", se = FALSE)+
   theme_minimal()
 
-ggplot(data, mapping = aes(x=years, y=GDP ) )+
-  geom_line() + facet_wrap(country~.)+ 
-  theme(axis.text.y = element_blank())
-
 ggplot(data, mapping = aes(x=years, y=GDP)) + 
   geom_line() + facet_wrap(country~.)+ 
   theme_minimal()+ scale_x_continuous(labels = NULL)
@@ -82,6 +78,8 @@ GMM<- pgmm(log(GDP) ~ lag(log(GDP),2) + log(COP) + log(NGP) + log(FEC) +
              lag(log(S), 2:99) + lag(log(TR), 2:99) + lag(log(LF+0.1+0.05), 2:99),
            data = pdata, effect = "individual", model = "onestep", transformation = "d", collapse = T)
 
+#Hausman Test
+phtest(Fixed,Random)
 
 #Organize the outputs into a table
 stargazer(list(Pooled,Fixed,Random,GMM), type="text",
